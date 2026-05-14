@@ -3,6 +3,7 @@ import os
 from dotenv import load_dotenv
 from crypto_client import get_roster_data, get_url_live, filter_coins_roster, handle_alert
 from utils import export_file
+from slack import send_to_slack
 
 # Load the .env file
 load_dotenv()
@@ -17,7 +18,10 @@ client = genai.Client(api_key=gemini_api_key)
 target_coins = ["bitcoin", "ethereum", "solana", "ripple", "dogecoin"]
 
 roster_data = get_roster_data()
+
+
 price_data = get_url_live()
+
 filter_coins = filter_coins_roster(roster_data, target_coins)
 
 def analyze_market_data(headers, client):
@@ -42,3 +46,5 @@ def analyze_market_data(headers, client):
 alerts = analyze_market_data(headers, client)
 
 export_file(alerts)
+
+send_to_slack(alerts)
