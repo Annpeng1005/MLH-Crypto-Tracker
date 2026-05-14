@@ -33,7 +33,9 @@ The goal is to turn raw market data into useful, context-aware insights for a tr
 ## Packages Installed
 
 This project uses:
+requests
 google-genai
+python-dotenv
 
 
 
