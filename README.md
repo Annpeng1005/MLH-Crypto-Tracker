@@ -37,6 +37,7 @@ requests
 google-genai
 python-dotenv
 
+<img width="1092" height="1250" alt="image" src="https://github.com/user-attachments/assets/809d3e0a-d3d4-4b5a-b0e1-26288392a517" />
 
 
 
