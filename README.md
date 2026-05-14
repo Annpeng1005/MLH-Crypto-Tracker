@@ -2,31 +2,34 @@
 
 ## Purpose of the Project
 
-MLH Crypto Tracker is a Python project that monitors live cryptocurrency market data, detects major 24-hour price drops, retrieves related crypto news, and uses Gemini AI to generate professional Slack-style alerts.
+MLH Crypto Tracker is a Python backend project that monitors live cryptocurrency prices, detects major 24-hour drops, retrieves related crypto news, and uses Gemini AI to generate professional Slack-style alerts.
 
-The goal is to turn raw market data into useful, context-aware insights for a trading or operations team.
+The purpose is to turn raw market data into useful, context-aware insights for a trading or operations team.
 
 ---
 
 ## Files Included
 
-- `main.py`  
-  Runs the full project workflow.
+main.py
+Runs the full project workflow.
 
-- `utils.py`  
-  Explore the data to get the message/alarm.
+crypto_client.py
+Handles API calls to CoinGecko, CryptoCompare, and Slack.
 
-- `ai_agent.py`  
-  Sends market and news context to Gemini and generates AI-powered alert messages.
+ai_agent.py
+Sends market data and news headlines to Gemini and generates AI-powered alerts.
 
-- `crypto_client.py`  
-  Output file containing generated alerts or a stable-market message.
+utils.py
+Contains helper logic for filtering coins, checking drops, extracting headlines, and formatting alerts.
 
-- `requirements.txt`  
-  Lists the Python packages needed to run the project.
+market_alerts.txt
+Output file containing AI-generated alerts or a stable-market message.
 
-- `README.md`  
-  Explains the project, setup, and usage.
+requirements.txt
+Lists required Python packages.
+
+README.md
+Explains setup, usage, and project purpose.
 
 ---
 
@@ -37,15 +40,31 @@ requests
 google-genai
 python-dotenv
 
-<img width="1092" height="1250" alt="image" src="https://github.com/user-attachments/assets/809d3e0a-d3d4-4b5a-b0e1-26288392a517" />
+
+## How to Run
+pip install -r requirements.txt
+
+Create a .env file:
+
+GEMINI_API_KEY=your_gemini_key
+CRYPTO_API_KEY=your_cryptocompare_key
+SLACK_WEBHOOK_URL=your_slack_webhook_url
+
+## Run:
+
+python main.py
+What to Expect After Running
+
+The program will fetch live crypto prices, check for coins that dropped past the threshold, retrieve related news, generate a Gemini AI alert, send it to Slack, and save the result in market_alerts.txt.
+
+If no coin drops enough, the output will say:
+
+Market is stable today.
+
+## System Design Diagram
+
+<img width="984" height="1110" alt="image" src="https://github.com/user-attachments/assets/37c36f36-5a24-47ae-909b-44ead5fcf7c7" />
 
 
-
-what files are included?
-what packages installed
-how to run the codes?
-what to expect after running?
-diagram
-what is the purpose of the project?
 
 2 mins video to explain the important part of the project and explain in detail
