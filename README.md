@@ -16,7 +16,7 @@ The purpose is to turn raw market data into useful, context-aware insights for a
 main.py
 Runs the full project workflow.
 
-crypto_client.py
+crypto_client.py\
 Handles API calls to CoinGecko, CryptoCompare, and Slack.
 
 ai_agent.py
