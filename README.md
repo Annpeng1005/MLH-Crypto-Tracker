@@ -63,9 +63,7 @@ Market is stable today.
 
 ## System Design Diagram
 
-<img width="928" height="1032" alt="image" src="https://github.com/user-attachments/assets/eead6436-9cb3-4d6f-beca-9f5b04d12132" />
-
-
+<img width="1016" height="1128" alt="image" src="https://github.com/user-attachments/assets/03326d7b-233e-47ae-8f00-86b1aaca2cf3" />
 
 
 2 mins video to explain the important part of the project and explain in detail
