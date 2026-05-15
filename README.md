@@ -1,5 +1,8 @@
 # MLH Crypto Tracker
 
+## Video Script
+https://github.com/user-attachments/assets/81d526fd-7989-4587-a408-0d7d75cb3589
+
 ## Purpose of the Project
 
 MLH Crypto Tracker is a Python backend project that monitors live cryptocurrency prices, detects major 24-hour drops, retrieves related crypto news, and uses Gemini AI to generate professional Slack-style alerts.
@@ -66,4 +69,5 @@ Market is stable today.
 <img width="1016" height="1128" alt="image" src="https://github.com/user-attachments/assets/03326d7b-233e-47ae-8f00-86b1aaca2cf3" />
 
 
-2 mins video to explain the important part of the project and explain in detail
+
+
