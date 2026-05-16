@@ -16,7 +16,7 @@ The goal is to transform raw market data into useful insights for a trading or o
 
 ## System Architecture
 
-![System Diagram](images/system_architecture.png)
+<img width="442" height="654" alt="Screenshot 2026-05-16 at 12 14 17 PM" src="https://github.com/user-attachments/assets/3d3ea989-0962-494f-ab81-2930c871c1e5" />
 
 This project combines several services and processing components:
 
