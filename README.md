@@ -1,71 +1,226 @@
 # MLH Crypto Tracker
 
-## Video Script
-https://github.com/user-attachments/assets/81d526fd-7989-4587-a408-0d7d75cb3589
-
-## Purpose of the Project
-
-MLH Crypto Tracker is a Python backend project that monitors live cryptocurrency prices, detects major 24-hour drops, retrieves related crypto\ news, and uses Gemini AI to generate professional Slack-style alerts.
-
-The purpose is to turn raw market data into useful, context-aware insights for a trading or operations team.
+AI-powered cryptocurrency monitoring system that detects market drops, retrieves related news, and generates contextual Slack alerts using Gemini AI.
 
 ---
 
-## Files Included
+## Purpose
 
-main.py
-Runs the full project workflow.
+MLH Crypto Tracker monitors live cryptocurrency prices, detects significant 24-hour market drops, retrieves related news, and uses Gemini AI to generate professional Slack-style alerts.
 
-crypto_client.py:\
-Handles API calls to CoinGecko, CryptoCompare, and Slack.
+Instead of only reporting that a coin dropped, the system attempts to explain *why* by combining market data with real-time news context.
 
-ai_agent.py:\
-Sends market data and news headlines to Gemini and generates AI-powered alerts.
+The goal is to transform raw market data into useful insights for a trading or operations team.
 
-utils.py:\
-Contains helper logic for filtering coins, checking drops, extracting headlines, and formatting alerts.
+---
 
-market_alerts.txt:\
-Output file containing AI-generated alerts or a stable-market message.
+## System Architecture
 
-requirements.txt:\
-Lists required Python packages.
+![System Diagram](images/system_architecture.png)
 
-README.md:\
-Explains setup, usage, and project purpose.
+This project combines several services and processing components:
+
+- `CoinGecko API`
+    - Retrieves live cryptocurrency prices and 24-hour percentage changes
+
+- `Drop Detection Logic`
+    - Applies business rules and checks alert thresholds
+
+- `CryptoCompare API`
+    - Retrieves related crypto news headlines
+
+- `Gemini AI`
+    - Uses Retrieval-Augmented Generation (RAG) to generate contextual summaries
+
+- `Slack Webhook`
+    - Sends AI-generated notifications
+
+- `market_alerts.txt`
+    - Stores local outputs
+
+---
+
+## Workflow
+
+1. Run the application:
+
+```bash
+python main.py
+```
+
+2. Retrieve live crypto prices from CoinGecko
+
+3. Detect whether any coin exceeds the alert threshold
+
+4. Retrieve related news headlines
+
+5. Pass market + news context to Gemini AI
+
+6. Generate AI-powered alerts
+
+7. Save output and send Slack notifications
+
+---
+
+## Project Structure
+
+`main.py`
+
+Controls and orchestrates the full application workflow.
+
+`crypto_client.py`
+
+Handles API requests to CoinGecko, CryptoCompare, and Slack.
+
+`ai_agent.py`
+
+Builds prompts and communicates with Gemini AI.
+
+`utils.py`
+
+Contains helper functions, filtering logic, and reusable business rules.
+
+`market_alerts.txt`
+
+Stores generated alerts or stable market output.
+
+`requirements.txt`
+
+Lists required project dependencies.
 
 ---
 
 ## Packages Installed
 
-This project uses:
+```bash
 requests
 google-genai
 python-dotenv
+slack-sdk
+```
 
+---
 
-## How to Run
+## Setup
+
+Install required dependencies:
+
+```bash
 pip install -r requirements.txt
+```
 
-Create a .env file:\
-GEMINI_API_KEY=your_gemini_key\
-CRYPTO_API_KEY=your_cryptocompare_key\
-SLACK_WEBHOOK_URL=your_slack_webhook_url\
+Create a `.env` file:
 
-## Run:
+```env
+GEMINI_API_KEY=your_key
 
-python main.py:\
-What to Expect After Running
+CRYPTO_API_KEY=your_key
 
-The program will fetch live crypto prices, check for coins that dropped past the threshold, retrieve related news, generate a Gemini AI alert,\ send it to Slack, and save the result in market_alerts.txt.
+SLACK_WEBHOOK_URL=your_webhook_url
+```
 
-If no coin drops enough, the output will say:
+---
 
+## Run Project
+
+```bash
+python main.py
+```
+
+---
+
+## Example Output
+
+Stable market:
+
+```text
 Market is stable today.
+```
 
-## System Design Diagram
+AI-generated alert:
 
-<img width="1016" height="1128" alt="image" src="https://github.com/user-attachments/assets/03326d7b-233e-47ae-8f00-86b1aaca2cf3" />
+```text
+🚨 Bitcoin dropped 6.2% today.
+
+Recent headlines suggest increased volatility and uncertainty surrounding regulatory developments.
+```
+
+Slack:
+
+```text
+[Slack notification sent successfully]
+```
+
+---
+
+## Prompt Engineering
+
+Gemini receives structured market and news context.
+
+Example:
+
+```text
+Act as a financial analyst.
+
+Coin: Bitcoin
+
+24-hour drop: -6.2%
+
+Price: $64,500
+
+Recent headlines:
+
+- ETF uncertainty increases volatility
+- Bitcoin selloff continues
+- Market sentiment weakens
+
+Write a concise Slack alert explaining possible reasons for the movement.
+```
+
+Providing retrieved news context reduces hallucination and improves response quality.
+
+---
+
+## Defensive Programming
+
+Since external APIs may fail or return incomplete data, defensive checks were added throughout the application.
+
+Examples include:
+
+- Verifying `response.status_code == 200`
+- Checking whether JSON keys exist
+- Handling empty responses
+- Skipping failed requests
+- Preventing invalid API calls
+
+This prevents a single failure from crashing the full workflow.
+
+---
+
+## Future Roadmap
+
+Potential Phase 2 improvements:
+
+- SQLite database integration
+- ETL pipelines for historical storage
+- Scheduled cloud deployment
+- Personalized alert preferences
+- User authentication
+- Discord and email support
+- Dashboard analytics
+
+---
+
+## Concepts Used
+
+- APIs
+- Retrieval-Augmented Generation (RAG)
+- Prompt Engineering
+- Webhooks
+- Defensive Programming
+- Modular Project Structure
+- Event Detection
+- Data Pipelines
 
 
 
