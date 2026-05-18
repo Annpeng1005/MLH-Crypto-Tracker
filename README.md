@@ -2,6 +2,7 @@
 
 AI-powered cryptocurrency monitoring system that detects market drops, retrieves related news, and generates contextual Slack alerts using Gemini AI.
 
+🎥 Demo Video: [Watch Demo Here](https://www.loom.com/share/317f7dc96eae4533ad9c914ead565d11)
 ---
 
 ## Purpose
